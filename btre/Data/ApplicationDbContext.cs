@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using btre.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,5 +13,8 @@ namespace btre.Data
             : base(options)
         {
         }
+
+        public DbSet<Listing> Listings { get; set; }
+        public DbSet<Realtor> Realtor { get; set; }
     }
 }

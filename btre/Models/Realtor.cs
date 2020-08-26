@@ -14,6 +14,9 @@ namespace btre.Models
             this.HireDate = DateTime.Now;
         }
 
+        [Key]
+        public int Id { get; set; }
+
         [Required]
         public string Name { get; set; }
         public string Description { get; set; }
@@ -25,6 +28,6 @@ namespace btre.Models
         public string Email { get; set; }
         public Boolean? IsMvp { get; set; }
         public DateTime? HireDate { get; set; }
-        public IFormFile Image { get; set; }
+        public string Image { get; set; }
     }
 }

@@ -12,5 +12,15 @@ namespace btre.Controllers
         {
             return View();
         }
+
+        public IActionResult CreateListing()
+        {
+            return View();
+        }
+
+        public IActionResult CreateRealtor()
+        {
+            return View();
+        }
     }
 }
