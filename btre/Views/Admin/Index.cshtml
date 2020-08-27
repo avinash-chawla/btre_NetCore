@@ -1,8 +1,17 @@
 ﻿@{ 
-    ViewData["Title"] = "Create Listing";
+    ViewData["Title"] = "Admin";
 }
 
 <div class="container">
-    <a asp-action="CreateListing" asp-controller="Admin">Create New Listing</a>
-    <a asp-action="CreateRealtor" asp-controller="Admin">Create New Realtor</a>
+    
+    
+    <div class="card m-5" style="width: 18rem;">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><a asp-action="Listings" asp-controller="Admin">Manage Listing</a></li>
+            <li class="list-group-item"><a asp-action="Realtors" asp-controller="Admin">Manage Realtor</a></li>
+        </ul>
+    </div>
 </div>
+<div style="margin-top: 400px"></div>
+
+

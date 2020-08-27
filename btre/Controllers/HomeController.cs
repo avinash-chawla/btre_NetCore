@@ -12,10 +12,12 @@ namespace btre.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IListingRepository _listingRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IListingRepository listingRepository)
         {
             _logger = logger;
+            _listingRepository = listingRepository;
         }
 
         public IActionResult Index()
@@ -30,10 +32,11 @@ namespace btre.Controllers
             return View();
         }
 
-        public IActionResult Listings()
+        public async Task<IActionResult> Listings()
         {
             ViewBag.Current = "Listings";
-            return View();
+            var listings = await _listingRepository.GetListings();
+            return View(listings);
         }
 
         public IActionResult Listing(int id)

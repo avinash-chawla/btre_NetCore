@@ -28,7 +28,6 @@ namespace btre.Controllers
         public IActionResult Index()
         {
             return View();
-
         }
 
         public async Task<IActionResult>Listings()
