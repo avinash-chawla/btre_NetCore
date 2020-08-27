@@ -21,9 +21,9 @@
                     @Html.DisplayNameFor(model => model.IsPublished)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Realtor)
+                    Realtor
                 </th>
-                <th></th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -44,7 +44,7 @@
                     </td>
 
                     <td>
-                        @Html.DisplayFor(modelItem => item.Realtor.Email)
+                        @Html.DisplayFor(modelItem => item.Realtor.Name)
                     </td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

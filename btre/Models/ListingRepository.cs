@@ -32,7 +32,7 @@ namespace btre.Models
 
         public async Task<IEnumerable<Listing>> GetListings()
         {
-            var listings = await _context.Listings.ToListAsync();
+            var listings = await _context.Listings.Include(x => x.Realtor).ToListAsync();
             return listings;
         }
 
@@ -79,12 +79,15 @@ namespace btre.Models
         private String UploadedFile(IFormFile photo)
         {
             string uniqueFileName = null;
-            string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "images");
-            uniqueFileName = DateTime.Now.ToString("yyyyMMdd") + "_" + photo.FileName;
-            string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            if(photo != null)
             {
-                photo.CopyTo(fileStream);
+                string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "images");
+                uniqueFileName = DateTime.Now.ToString("yyyyMMdd") + "_" + photo.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    photo.CopyTo(fileStream);
+                }
             }
             return uniqueFileName;
         }

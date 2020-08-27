@@ -61,7 +61,7 @@ namespace btre.Models
 
         public IEnumerable<Realtor> GetRealtors()
         {
-            var realtors = _context.Realtors.ToListAsync();
+            var realtors = _context.Realtors.ToList();
             return realtors;
         }
     }
