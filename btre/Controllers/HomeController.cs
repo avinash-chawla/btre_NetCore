@@ -39,9 +39,10 @@ namespace btre.Controllers
             return View(listings);
         }
 
-        public IActionResult Listing(int id)
+        public async Task<IActionResult> Listing(int id)
         {
-            return View();
+            var listing = await _listingRepository.GetListing(id);
+            return View(listing);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<btre.Models.Listing>
-
+@using System.Globalization 
 @{
     ViewData["Title"] = "Listings";
+    NumberFormatInfo nfi = new CultureInfo("en-US", false).NumberFormat;
 }
 
 <!-- Breadcrumb -->
@@ -32,7 +33,7 @@
                         <img class="card-img-top" src="~/images/@item.PhotoMain" alt="">
                         <div class="card-img-overlay">
                             <h2>
-                                <span class="badge badge-secondary text-white">$@item.Price.ToString("F0")</span>
+                                <span class="badge badge-secondary text-white">@item.Price.ToString("C", nfi)</span>
                             </h2>
                         </div>
                         <div class="card-body">
@@ -71,7 +72,7 @@
                                 </div>
                             </div>
                             <hr>
-                            <a href="listing.html" class="btn btn-primary btn-block">More Info</a>
+                            <a asp-action="listing" asp-controller="home" asp-route-id="@item.Id" class="btn btn-primary btn-block">More Info</a>
                         </div>
                     </div>
                 </div>

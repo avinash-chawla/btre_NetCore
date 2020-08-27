@@ -26,7 +26,7 @@ namespace btre.Models
 
         public async Task<Listing> GetListing(int id)
         {
-            var listing = await _context.Listings.SingleOrDefaultAsync(x => x.Id == id);
+            var listing = await _context.Listings.Include(x => x.Realtor).SingleOrDefaultAsync(x => x.Id == id);
             return listing;
         }
 
