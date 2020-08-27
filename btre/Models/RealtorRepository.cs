@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace btre.Models
@@ -56,7 +57,8 @@ namespace btre.Models
 
         public Task<Realtor> GetRealtor(int id)
         {
-            throw new NotImplementedException();
+            var realtor = _context.Realtors.FirstOrDefaultAsync(x => x.Id == id);
+            return realtor;
         }
 
         public IEnumerable<Realtor> GetRealtors()

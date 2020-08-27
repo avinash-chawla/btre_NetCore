@@ -96,6 +96,20 @@ namespace btre.Controllers
 
             return View("CreateListing",model);
         }
+
+        public async Task<IActionResult> EditRealtor(int id)
+        {
+            var realtor = await _realtorRepo.GetRealtor(id);
+            CreateRealtorViewModel model = new CreateRealtorViewModel
+            {
+                Name = realtor.Name,
+                Description = realtor.Description,
+                Email = realtor.Email,
+                Phone = realtor.Phone,
+                IsMvp = realtor.IsMvp,
+            };
+            return View("CreateRealtor", model);
+        }
     }
 }
 //private object UploadedFile2(CreateListingViewModel model)
