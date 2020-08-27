@@ -24,7 +24,7 @@ namespace btre.Models
 
         public async Task<string> CreateRealtor(CreateRealtorViewModel model)
         {
-            string uniqueFileName = UploadedFile(model.Id, model.Image);
+            string uniqueFileName = UploadedFile(model.Image);
             Realtor realtor = new Realtor
             {
                 Name = model.Name,
@@ -38,15 +38,18 @@ namespace btre.Models
             return "Successfully Created";
         }
 
-        private String UploadedFile(int id, IFormFile photo)
+        private String UploadedFile(IFormFile photo)
         {
             string uniqueFileName = null;
-            string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "images", "realtors", Convert.ToString(id));
-            uniqueFileName = DateTime.Now.ToString("yyyyMMdd") + "_" + photo.FileName;
-            string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            if(photo != null)
             {
-                photo.CopyTo(fileStream);
+                string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "images", "realtors");
+                uniqueFileName = DateTime.Now.ToString("yyyyMMdd") + "_" + photo.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    photo.CopyTo(fileStream);
+                }
             }
             return uniqueFileName;
         }
@@ -58,7 +61,7 @@ namespace btre.Models
 
         public IEnumerable<Realtor> GetRealtors()
         {
-            var realtors = _context.Realtors.ToList();
+            var realtors = _context.Realtors.ToListAsync();
             return realtors;
         }
     }

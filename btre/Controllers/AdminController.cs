@@ -65,11 +65,11 @@ namespace btre.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateRealtor(CreateRealtorViewModel model)
+        public async Task<IActionResult> CreateRealtor(CreateRealtorViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var message = _realtorRepo.CreateRealtor(model);
+                var message = await _realtorRepo.CreateRealtor(model);
                 return RedirectToAction(nameof(Realtors));
             }
             return View();

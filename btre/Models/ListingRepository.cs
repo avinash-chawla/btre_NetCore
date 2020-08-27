@@ -38,13 +38,13 @@ namespace btre.Models
 
         public async Task<string> CreateListing(CreateListingViewModel model)
         {
-            var uniqueFileName = UploadedFile(model.Id, model.PhotoMain);
-            var uniqueFileName1 = UploadedFile(model.Id, model.Photo1);
-            var uniqueFileName2 = UploadedFile(model.Id, model.Photo2);
-            var uniqueFileName3 = UploadedFile(model.Id, model.Photo3);
-            var uniqueFileName4 = UploadedFile(model.Id, model.Photo4);
-            var uniqueFileName5 = UploadedFile(model.Id, model.Photo5);
-            var uniqueFileName6 = UploadedFile(model.Id, model.Photo6);
+            var uniqueFileName = UploadedFile(model.PhotoMain);
+            var uniqueFileName1 = UploadedFile(model.Photo1);
+            var uniqueFileName2 = UploadedFile(model.Photo2);
+            var uniqueFileName3 = UploadedFile(model.Photo3);
+            var uniqueFileName4 = UploadedFile(model.Photo4);
+            var uniqueFileName5 = UploadedFile(model.Photo5);
+            var uniqueFileName6 = UploadedFile(model.Photo6);
 
             Listing listing = new Listing
             {
@@ -76,10 +76,10 @@ namespace btre.Models
             return "Successfully Created";
         }
 
-        private String UploadedFile(int id, IFormFile photo)
+        private String UploadedFile(IFormFile photo)
         {
             string uniqueFileName = null;
-            string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "images", Convert.ToString(id));
+            string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "images");
             uniqueFileName = DateTime.Now.ToString("yyyyMMdd") + "_" + photo.FileName;
             string filePath = Path.Combine(uploadsFolder, uniqueFileName);
             using (var fileStream = new FileStream(filePath, FileMode.Create))

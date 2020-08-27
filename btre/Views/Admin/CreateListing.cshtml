@@ -181,6 +181,10 @@
                                 <option value="">Please select...</option>
                                 <options asp-items="@Model.Realtors" />
                             </select>
+                            <select asp-for="RealtorId"
+                                    asp-items="@(new SelectList(Model.Realtors,"Name","Id"))">
+                                <option>Please select one</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-4 mt-4 pt-3">
