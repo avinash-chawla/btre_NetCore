@@ -10,11 +10,46 @@ namespace btre.ViewModels
 {
     public class CreateListingViewModel
     {
+        private readonly IListingRepository _listingRepository;
+        private readonly IRealtorRepository _realtorRepository;
+
         public IEnumerable<Realtor> Realtors { get; set; }
         public CreateListingViewModel()
         {
             this.Garage = 0;
             this.IsPublished = true;
+        }
+
+        public CreateListingViewModel(IListingRepository listingRepository, IRealtorRepository realtorRepository)
+        {
+            this.Garage = 0;
+            this.IsPublished = true;
+            _listingRepository = listingRepository;
+            _realtorRepository = realtorRepository;
+        }
+
+        public async Task<CreateListingViewModel> SeedDate(int id)
+        {
+            var listing = await _listingRepository.GetListing(id);
+            CreateListingViewModel model = new CreateListingViewModel
+            {
+                Id = listing.Id,
+                Title = listing.Title,
+                Address = listing.Address,
+                City = listing.City,
+                State = listing.State,
+                ZipCode = listing.ZipCode,
+                Description = listing.Description,
+                Price = listing.Price,
+                Bedrooms = listing.Bedrooms,
+                Bathrooms = listing.Bathrooms,
+                Garage = listing.Garage,
+                Sqft = listing.Sqft,
+                LotSize = listing.LotSize,
+                IsPublished = listing.IsPublished,
+                RealtorId = listing.RealtorId
+            };
+            return model;
         }
 
         public int Id { get; set; }

@@ -20,10 +20,11 @@ namespace btre.Controllers
             _listingRepository = listingRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             ViewBag.Current = "Index";
-            return View();
+            var listings = await _listingRepository.GetTop3Listing();
+            return View(listings);
         }
 
         public IActionResult About()

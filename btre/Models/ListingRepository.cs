@@ -2,14 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using btre.ViewModels;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using System.Reflection;
 
 namespace btre.Models
 {
@@ -33,6 +32,16 @@ namespace btre.Models
         public async Task<IEnumerable<Listing>> GetListings()
         {
             var listings = await _context.Listings.Include(x => x.Realtor).ToListAsync();
+            return listings;
+        }
+
+        public async Task<IEnumerable<Listing>> GetTop3Listing()
+        {
+            var listings = await _context.Listings
+                                        .Include(x => x.Realtor)
+                                        .OrderBy(x => x.ListDate)
+                                        .Take(3)
+                                        .ToListAsync();
             return listings;
         }
 
@@ -91,5 +100,6 @@ namespace btre.Models
             }
             return uniqueFileName;
         }
+
     }
 }

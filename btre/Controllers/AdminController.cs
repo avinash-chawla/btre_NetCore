@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.InteropServices.ComTypes;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using btre.Models;
 using btre.ViewModels;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace btre.Controllers
@@ -56,8 +49,6 @@ namespace btre.Controllers
             return View();
         }
 
-
-       
         public IActionResult CreateRealtor()
         {
             return View();
@@ -78,6 +69,32 @@ namespace btre.Controllers
         {
             var realtors = _realtorRepo.GetRealtors();
             return View(realtors);
+        }
+
+        public async Task<IActionResult> EditListing(int id)
+        {
+            var listing = await _listingRepo.GetListing(id);
+            CreateListingViewModel model = new CreateListingViewModel()
+            {
+                Id = listing.Id,
+                Title = listing.Title,
+                Address = listing.Address,
+                City = listing.City,
+                State = listing.State,
+                ZipCode = listing.ZipCode,
+                Description = listing.Description,
+                Price = listing.Price,
+                Bedrooms = listing.Bedrooms,
+                Bathrooms = listing.Bathrooms,
+                Garage = listing.Garage,
+                Sqft = listing.Sqft,
+                LotSize = listing.LotSize,
+                IsPublished = listing.IsPublished,
+                RealtorId = listing.RealtorId,
+                Realtors = _realtorRepo.GetRealtors()
+            };
+
+            return View("CreateListing",model);
         }
     }
 }
