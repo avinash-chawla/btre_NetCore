@@ -1,4 +1,4 @@
-﻿@model btre.Models.Listing
+﻿@model btre.ViewModels.CreateListingViewModel
 
 @{
     ViewData["Title"] = "Create Listing";
@@ -12,7 +12,7 @@
     <hr />
     <div class="row">
         <div class="col-md-4">
-            <form asp-action="CreateListing">
+            <form asp-action="CreateListing" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Title" class="control-label"></label>
@@ -74,11 +74,16 @@
                     <input asp-for="LotSize" class="form-control" />
                     <span asp-validation-for="LotSize" class="text-danger"></span>
                 </div>
+
                 <div class="form-group">
                     <label asp-for="PhotoMain" class="control-label"></label>
-                    <input asp-for="PhotoMain" class="form-control" />
+                    <div class="custom-file">
+                        <input asp-for="PhotoMain" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
                     <span asp-validation-for="PhotoMain" class="text-danger"></span>
                 </div>
+
                 <div class="form-group">
                     <label asp-for="Photo1" class="control-label"></label>
                     <input asp-for="Photo1" class="form-control" />
@@ -114,11 +119,7 @@
                         <input class="form-check-input" asp-for="IsPublished" /> @Html.DisplayNameFor(model => model.IsPublished)
                     </label>
                 </div>
-                <div class="form-group">
-                    <label asp-for="ListDate" class="control-label"></label>
-                    <input asp-for="ListDate" class="form-control" />
-                    <span asp-validation-for="ListDate" class="text-danger"></span>
-                </div>
+
                 <div class="form-group">
                     <label asp-for="RealtorId" class="control-label"></label>
                     <select asp-for="RealtorId" class="form-control" asp-items="ViewBag.RealtorId"></select>
