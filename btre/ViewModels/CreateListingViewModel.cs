@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using btre.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,6 +10,7 @@ namespace btre.ViewModels
 {
     public class CreateListingViewModel
     {
+        public IEnumerable<Realtor> Realtors { get; set; }
         public CreateListingViewModel()
         {
             this.Garage = 0;

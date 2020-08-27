@@ -177,7 +177,10 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label asp-for="RealtorId" class="control-label"></label>
-                            <select asp-for="RealtorId" class="form-control" asp-items="ViewBag.RealtorId"></select>
+                            <select asp-for="RealtorId" class="form-control">
+                                <option value="">Please select...</option>
+                                <options asp-items="@Model.Realtors" />
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-4 mt-4 pt-3">

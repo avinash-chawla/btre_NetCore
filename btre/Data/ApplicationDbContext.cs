@@ -15,6 +15,6 @@ namespace btre.Data
         }
 
         public DbSet<Listing> Listings { get; set; }
-        public DbSet<Realtor> Realtor { get; set; }
+        public DbSet<Realtor> Realtors { get; set; }
     }
 }

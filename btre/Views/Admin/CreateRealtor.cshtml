@@ -1,5 +1,4 @@
-﻿@model btre.Models.Realtor
-
+﻿@model btre.ViewModels.CreateRealtorViewModel
 @{
     ViewData["Title"] = "CreateRealtor";
 }
@@ -10,57 +9,83 @@
 
     <h4>Realtor</h4>
     <hr />
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="CreateRealtor">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <form asp-action="CreateRealtor">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="row">
+            <div class="col-md-4">
                 <div class="form-group">
                     <label asp-for="Name" class="control-label"></label>
                     <input asp-for="Name" class="form-control" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
                 <div class="form-group">
                     <label asp-for="Description" class="control-label"></label>
                     <input asp-for="Description" class="form-control" />
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
+            </div>
+            <div class="col-md-4">
                 <div class="form-group">
                     <label asp-for="Phone" class="control-label"></label>
                     <input asp-for="Phone" class="form-control" />
                     <span asp-validation-for="Phone" class="text-danger"></span>
                 </div>
+            </div>
+            <div class="col-md-4">
                 <div class="form-group">
                     <label asp-for="Email" class="control-label"></label>
                     <input asp-for="Email" class="form-control" />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="IsMvp" class="control-label"></label>
-                    <input asp-for="IsMvp" class="form-control" />
-                    <span asp-validation-for="IsMvp" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="HireDate" class="control-label"></label>
-                    <input asp-for="HireDate" class="form-control" />
-                    <span asp-validation-for="HireDate" class="text-danger"></span>
-                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
                 <div class="form-group">
                     <label asp-for="Image" class="control-label"></label>
-                    <input asp-for="Image" class="form-control" />
+                    <div class="custom-file">
+                        <input asp-for="Image" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
                     <span asp-validation-for="Image" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
 
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="IsMvp" /> @Html.DisplayNameFor(model => model.IsMvp)
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
     <div>
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Index" class="btn btn-outline-secondary mb-3">Back to List</a>
     </div>
 </div>
 
-@section Scripts {
+@section scripts{
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
 }

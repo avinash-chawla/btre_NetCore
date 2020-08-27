@@ -20,8 +20,7 @@ namespace btre.ViewModels
 
         [Required]
         public string Email { get; set; }
-        public Boolean? IsMvp { get; set; }
-        public DateTime? HireDate { get; set; }
+        public Boolean IsMvp { get; set; }
         public IFormFile Image { get; set; }
     }
 }

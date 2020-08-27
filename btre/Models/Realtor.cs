@@ -26,7 +26,7 @@ namespace btre.Models
 
         [Required]
         public string Email { get; set; }
-        public Boolean? IsMvp { get; set; }
+        public Boolean IsMvp { get; set; }
         public DateTime? HireDate { get; set; }
         public string Image { get; set; }
     }

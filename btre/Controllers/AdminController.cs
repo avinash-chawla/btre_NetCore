@@ -16,11 +16,13 @@ namespace btre.Controllers
     public class AdminController : Controller
     {
         private readonly IListingRepository _listingRepo;
+        private readonly IRealtorRepository _realtorRepo;
         private readonly IWebHostEnvironment _hostEnvironment;
 
-        public AdminController(IListingRepository listingRepo, IWebHostEnvironment hostEnvironment)
+        public AdminController(IListingRepository listingRepo, IRealtorRepository realtorRepo, IWebHostEnvironment hostEnvironment)
         {
             _listingRepo = listingRepo;
+            _realtorRepo = realtorRepo;
             _hostEnvironment = hostEnvironment;
         }
         public IActionResult Index()
@@ -37,7 +39,11 @@ namespace btre.Controllers
 
         public IActionResult CreateListing()
         {
-            return View();
+            CreateListingViewModel model = new CreateListingViewModel
+            {
+                Realtors = _realtorRepo.GetRealtors()
+            };
+            return View(model);
         }
 
         [HttpPost]
@@ -61,7 +67,18 @@ namespace btre.Controllers
         [HttpPost]
         public IActionResult CreateRealtor(CreateRealtorViewModel model)
         {
+            if (ModelState.IsValid)
+            {
+                var message = _realtorRepo.CreateRealtor(model);
+                return RedirectToAction(nameof(Realtors));
+            }
             return View();
+        }
+
+        public IActionResult Realtors()
+        {
+            var realtors = _realtorRepo.GetRealtors();
+            return View(realtors);
         }
     }
 }

@@ -34,6 +34,7 @@ namespace btre
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddScoped<IListingRepository, ListingRepository>();
+            services.AddScoped<IRealtorRepository, RealtorRepository>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
