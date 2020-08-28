@@ -1,14 +1,21 @@
-﻿@model btre.ViewModels.CreateListingViewModel
+﻿@model btre.ViewModels.EditListingViewModel
 
 @{
-    ViewData["Title"] = "Create Listing";
+    ViewData["Title"] = "Edit Listing";
+    var photoMain = "~/images/" + (Model.ExistingPhotoMain ?? "default/noimage.png");
+    var photo1 = "~/images/" + (Model.ExistingPhoto1 ?? "default/noimage.png");
+    var photo2 = "~/images/" + (Model.ExistingPhoto2 ?? "default/noimage.png");
+    var photo3 = "~/images/" + (Model.ExistingPhoto3 ?? "default/noimage.png");
+    var photo4 = "~/images/" + (Model.ExistingPhoto4 ?? "default/noimage.png");
+    var photo5 = "~/images/" + (Model.ExistingPhoto5 ?? "default/noimage.png");
+    var photo6 = "~/images/" + (Model.ExistingPhoto6 ?? "default/noimage.png");
 }
 
 <div class="container">
 
-    <h1 class="mt-2">CreateListing</h1>
+    <h1 class="mt-2">Edit Listing</h1>
     <hr />
-    <form asp-action="CreateListing" enctype="multipart/form-data">
+    <form asp-action="EditListing" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="row">
             <div class="col-md-4">
@@ -114,7 +121,13 @@
         </div>
 
         <div class="row">
-            <div class="col-4">
+            <div class="col-md-5">
+                <div class="form-group row col-sm-4">
+                    <img class="imageThumbnail" src="@photoMain" asp-append-version="true" height="100px" width="100px" />
+                </div>
+            </div>
+            <div class="col-md-3" style="margin-left: -300px">
+
                 <div class="form-group">
                     <label asp-for="PhotoMain" class="control-label"></label>
                     <div class="custom-file">
@@ -127,47 +140,114 @@
         </div>
 
         <div class="row">
-            <div class="col-4">
+            <div class="col-md-5">
+                <div class="form-group row col-sm-4">
+                    <img class="imageThumbnail" src="@photo1" asp-append-version="true" height="100px" width="100px" />
+                </div>
+            </div>
+            <div class="col-md-3" style="margin-left: -300px">
+
                 <div class="form-group">
                     <label asp-for="Photo1" class="control-label"></label>
-                    <input asp-for="Photo1" class="form-control" />
+                    <div class="custom-file">
+                        <input asp-for="Photo1" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
                     <span asp-validation-for="Photo1" class="text-danger"></span>
                 </div>
             </div>
-            <div class="col-4">
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group row col-sm-4">
+                    <img class="imageThumbnail" src="@photo2" asp-append-version="true" height="100px" width="100px" />
+                </div>
+            </div>
+            <div class="col-md-3" style="margin-left: -300px">
+
                 <div class="form-group">
                     <label asp-for="Photo2" class="control-label"></label>
-                    <input asp-for="Photo2" class="form-control" />
+                    <div class="custom-file">
+                        <input asp-for="Photo2" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
                     <span asp-validation-for="Photo2" class="text-danger"></span>
                 </div>
             </div>
-            <div class="col-4">
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group row col-sm-4">
+                    <img class="imageThumbnail" src="@photo3" asp-append-version="true" height="100px" width="100px" />
+                </div>
+            </div>
+            <div class="col-md-3" style="margin-left: -300px">
+
                 <div class="form-group">
                     <label asp-for="Photo3" class="control-label"></label>
-                    <input asp-for="Photo3" class="form-control" />
+                    <div class="custom-file">
+                        <input asp-for="Photo3" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
                     <span asp-validation-for="Photo3" class="text-danger"></span>
                 </div>
             </div>
         </div>
+
         <div class="row">
-            <div class="col-4">
+            <div class="col-md-5">
+                <div class="form-group row col-sm-4">
+                    <img class="imageThumbnail" src="@photo4" asp-append-version="true" height="100px" width="100px" />
+                </div>
+            </div>
+            <div class="col-md-3" style="margin-left: -300px">
+
                 <div class="form-group">
                     <label asp-for="Photo4" class="control-label"></label>
-                    <input asp-for="Photo4" class="form-control" />
+                    <div class="custom-file">
+                        <input asp-for="Photo4" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
                     <span asp-validation-for="Photo4" class="text-danger"></span>
                 </div>
             </div>
-            <div class="col-4">
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group row col-sm-4">
+                    <img class="imageThumbnail" src="@photo5" asp-append-version="true" height="100px" width="100px" />
+                </div>
+            </div>
+            <div class="col-md-3" style="margin-left: -300px">
+
                 <div class="form-group">
                     <label asp-for="Photo5" class="control-label"></label>
-                    <input asp-for="Photo5" class="form-control" />
+                    <div class="custom-file">
+                        <input asp-for="Photo5" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
                     <span asp-validation-for="Photo5" class="text-danger"></span>
                 </div>
             </div>
-            <div class="col-4">
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group row col-sm-4">
+                    <img class="imageThumbnail" src="@photoMain" asp-append-version="true" height="100px" width="100px" />
+                </div>
+            </div>
+            <div class="col-md-3" style="margin-left: -300px">
+
                 <div class="form-group">
                     <label asp-for="Photo6" class="control-label"></label>
-                    <input asp-for="Photo6" class="form-control" />
+                    <div class="custom-file">
+                        <input asp-for="Photo6" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
                     <span asp-validation-for="Photo6" class="text-danger"></span>
                 </div>
             </div>
@@ -192,10 +272,17 @@
         </div>
 
         <div class="form-group">
-            <input type="submit" value="Create" class="btn btn-primary" />
+            <input type="submit" value="Edit" class="btn btn-primary" />
         </div>
 
-        <input type="hidden" asp-for="Id"/>
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="ExistingPhotoMain" />
+        <input type="hidden" asp-for="ExistingPhoto1" />
+        <input type="hidden" asp-for="ExistingPhoto2" />
+        <input type="hidden" asp-for="ExistingPhoto3" />
+        <input type="hidden" asp-for="ExistingPhoto4" />
+        <input type="hidden" asp-for="ExistingPhoto5" />
+        <input type="hidden" asp-for="ExistingPhoto6" />
     </form>
 
     <div>

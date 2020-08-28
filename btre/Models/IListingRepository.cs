@@ -12,5 +12,6 @@ namespace btre.Models
         public Task<Listing> GetListing(int id);
         public Task<string> CreateListing(CreateListingViewModel model);
         Task<IEnumerable<Listing>> GetTop3Listing();
+        public Listing Update(Listing listingChanges);
     }
 }

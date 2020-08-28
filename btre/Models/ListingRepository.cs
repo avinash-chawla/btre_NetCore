@@ -101,5 +101,12 @@ namespace btre.Models
             return uniqueFileName;
         }
 
+        public Listing Update(Listing listingChanges)
+        {
+            var listing = _context.Listings.Attach(listingChanges);
+            listing.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.SaveChanges();
+            return listingChanges;
+        }
     }
 }
