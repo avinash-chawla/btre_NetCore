@@ -17,8 +17,4 @@
     <PackageReference Include="System.Globalization" Version="4.3.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\images\realtors\" />
-  </ItemGroup>
-
 </Project>

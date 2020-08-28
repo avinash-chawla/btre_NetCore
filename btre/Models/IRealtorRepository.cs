@@ -11,5 +11,6 @@ namespace btre.Models
         Task<Realtor> GetRealtor(int id);
         IEnumerable<Realtor> GetRealtors();
         Task<string> CreateRealtor(CreateRealtorViewModel model);
+        Realtor Update(Realtor realtor);
     }
 }

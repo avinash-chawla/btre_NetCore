@@ -66,5 +66,13 @@ namespace btre.Models
             var realtors = _context.Realtors.ToList();
             return realtors;
         }
+
+        public Realtor Update(Realtor realtorChanges)
+        {
+            var realtor = _context.Realtors.Attach(realtorChanges);
+            realtor.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.SaveChanges();
+            return realtorChanges;
+        }
     }
 }

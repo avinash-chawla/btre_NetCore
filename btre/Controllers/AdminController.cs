@@ -219,15 +219,42 @@ namespace btre.Controllers
         public async Task<IActionResult> EditRealtor(int id)
         {
             var realtor = await _realtorRepo.GetRealtor(id);
-            CreateRealtorViewModel model = new CreateRealtorViewModel
+            EditRealtorViewModel model = new EditRealtorViewModel
             {
                 Name = realtor.Name,
                 Description = realtor.Description,
                 Email = realtor.Email,
                 Phone = realtor.Phone,
                 IsMvp = realtor.IsMvp,
+                ExistingImage = realtor.Image
             };
-            return View("CreateRealtor", model);
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditRealtor(EditRealtorViewModel model)
+        { 
+            if(ModelState.IsValid)
+            {
+                var realtor = await _realtorRepo.GetRealtor(model.Id);
+                realtor.Name = model.Name;
+                realtor.Description = model.Description;
+                realtor.Email = model.Email;
+                realtor.Phone = model.Phone;
+                realtor.IsMvp = model.IsMvp;
+                if(model.Image != null)
+                {
+                    if(model.ExistingImage != null)
+                    {
+                        string filePath = Path.Combine(_hostEnvironment.WebRootPath, "images", "realtors", model.ExistingImage);
+                        System.IO.File.Delete(filePath);
+                    };
+                    realtor.Image = UploadedFile(model.Image);
+                };
+                Realtor updatedRealtor = _realtorRepo.Update(realtor);
+                return RedirectToAction("Index");
+            };
+            return View();
         }
     }
 }
