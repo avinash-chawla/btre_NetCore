@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 
 namespace btre.Models
 {
@@ -88,7 +89,7 @@ namespace btre.Models
         private String UploadedFile(IFormFile photo)
         {
             string uniqueFileName = null;
-            if(photo != null)
+            if (photo != null)
             {
                 string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "images");
                 uniqueFileName = DateTime.Now.ToString("yyyyMMdd") + "_" + photo.FileName;
@@ -107,6 +108,14 @@ namespace btre.Models
             listing.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
             return listingChanges;
+        }
+
+        public string Delete(int id)
+        {
+            var listing = _context.Listings.Find(id);
+            _context.Listings.Remove(listing);
+            _context.SaveChangesAsync();
+            return "Successfully Deleted";
         }
     }
 }

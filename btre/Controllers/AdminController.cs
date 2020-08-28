@@ -26,7 +26,7 @@ namespace btre.Controllers
             return View();
         }
 
-        public async Task<IActionResult>Listings()
+        public async Task<IActionResult> Listings()
         {
             var listings = await _listingRepo.GetListings();
             return View(listings);
@@ -255,6 +255,24 @@ namespace btre.Controllers
                 return RedirectToAction("Index");
             };
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult DeleteListing(int id)
+        {
+            var result = _listingRepo.Delete(id);
+            return RedirectToAction(nameof(Listings)); ;
+        }
+
+        [HttpPost]
+        public IActionResult DeleteRealtor(int id)
+        {
+            var result = _realtorRepo.Delete(id);
+            if (result == null)
+            {
+                throw new NotImplementedException();
+            };
+            return RedirectToAction(nameof(Realtors));
         }
     }
 }

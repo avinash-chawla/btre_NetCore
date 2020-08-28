@@ -74,5 +74,17 @@ namespace btre.Models
             _context.SaveChanges();
             return realtorChanges;
         }
+
+        public async Task<string> Delete(int id)
+        {
+            var realtor = await GetRealtor(id);
+            if (realtor == null)
+            {
+                return null;
+            }
+            _context.Realtors.Remove(realtor);
+            await _context.SaveChangesAsync();
+            return "Successfully Deleted";
+        }
     }
 }

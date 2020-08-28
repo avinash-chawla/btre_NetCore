@@ -13,5 +13,6 @@ namespace btre.Models
         public Task<string> CreateListing(CreateListingViewModel model);
         Task<IEnumerable<Listing>> GetTop3Listing();
         public Listing Update(Listing listingChanges);
+        string Delete(int id);
     }
 }
